@@ -21,7 +21,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { NgModel } from '@angular/forms'; // ✅ Import NgModel
 import { InterviewSessionComponent } from './interview-session/interview-session.component';
-import { InterviewFeedbackComponent } from './interview-feedback/interview-feedback.component'; // ✅ Import your component
 import { InterviewScoreComponent } from './interview-score/interview-score.component'; // ✅ Import your component
 import { ProfileComponent } from './profile/profile.component';
 import { ResumeAnalysisComponent } from './resume-analysis/resume-analysis.component';
@@ -40,7 +39,6 @@ export const appConfig: ApplicationConfig = {
       { path: 'forgot-password', loadComponent: () => import('./forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent) },
       { path: 'reset-password', loadComponent: () => import('./reset-password/reset-password.component').then(m => m.ResetPasswordComponent) },
       { path: 'interview-session', loadComponent: () => import('./interview-session/interview-session.component').then(m => m.InterviewSessionComponent) },
-      { path: 'interview-feedback', loadComponent: () => import('./interview-feedback/interview-feedback.component').then(m => m.InterviewFeedbackComponent) },
       { path: 'interview-score', loadComponent: () => import('./interview-score/interview-score.component').then(m => m.InterviewScoreComponent) },
       { path: 'profile', loadComponent: () => import('./profile/profile.component').then(m => m.ProfileComponent) },
       { path: 'resume-analysis', loadComponent: () => import('./resume-analysis/resume-analysis.component').then(m => m.ResumeAnalysisComponent) },
