@@ -1,0 +1,58 @@
+<div class="dashboard-container">
+  <div class="user-menu-container">
+    <div class="user-icon" (click)="toggleDropdown()">
+      <div class="user-initial" *ngIf="firstName">{{ firstName[0] | uppercase }}</div>
+
+    </div>
+  
+    <div class="dropdown" *ngIf="dropdownOpen">
+      <ul>
+        <li (click)="goToProfile()">👤 Profile</li>
+        <li (click)="goToHistory()">📜 Interview History</li>
+        <li (click)="goToAnalysis()">📊 Resume Analysis</li>
+        <li (click)="logout()">🚪 Logout</li>
+      </ul>
+    </div>
+  </div>
+  
+  <h1 class="welcome">Welcome, {{ firstName }} 👋</h1>
+
+  <div class="resume-upload-container">
+    <div class="upload">
+      <h2>📤 Upload Your Resume</h2>
+
+      <div class="upload-box">
+        <div class="upload-container">
+          <input type="file" id="resumeInput" (change)="onFileSelected($event)" accept=".pdf" />
+        </div>
+        <label for="resumeInput">Choose File</label>
+
+        <button (click)="uploadResume()" [disabled]="!selectedFile || uploading">
+          <span *ngIf="uploading" class="spinner"></span>
+          <span *ngIf="!uploading">Upload</span>
+        </button>
+      </div>
+
+      <p *ngIf="uploadMessage" class="upload-message">{{ uploadMessage }}</p>
+    </div>
+  </div>
+
+
+  <div class="card-container">
+    <div class="card-grid">
+      <div class="info-card rank-btn">
+        <h2><a routerLink="/ranker" class="btn">Check ATS Score</a></h2>
+      </div>
+
+      <div class="info-card rank-btn">
+        <h2><a routerLink="/interview-session" class="btn">Start Interview</a></h2>
+      </div>
+
+    </div>
+
+    <div class="footer-note">
+      <p>Explore AI-powered mock interviews & track your progress</p>
+    </div>
+  </div>
+
+</div>

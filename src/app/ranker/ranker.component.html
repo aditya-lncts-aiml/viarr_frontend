@@ -1,0 +1,34 @@
+<div class="main">
+  <div class="container">
+    <h2 class="title">ATS Resume Ranker</h2>
+  
+    <textarea [(ngModel)]="jobDescription" placeholder="Paste Job Description here..."></textarea>
+  
+    <button (click)="checkAtsScore()" [disabled]="loading || !jobDescription.trim()">
+      {{ loading ? 'Checking...' : 'Check ATS Score' }}
+    </button>
+  
+    <div *ngIf="atsScore !== null" class="result">
+      <h3>ATS Score: <span>{{ atsScore }}%</span></h3>
+      <p [ngClass]="{
+        'text-green-600': atsScore >= 70,
+        'text-yellow-600': atsScore >= 40 && atsScore < 70,
+        'text-red-600': atsScore < 40
+      }">
+        {{ atsScore >= 70 ? '✅ Excellent Match' : atsScore >= 40 ? '⚠️ Partial Match' : '❌ Needs Improvement' }}
+      </p>
+  
+      <div class="progress">
+        <div class="bar" [ngStyle]="{ width: atsScore + '%', backgroundColor: getColor(atsScore) }"></div>
+      </div>
+    </div>
+    <div *ngIf="message" [style.color]="atsScore !== null ? getColor(atsScore) : '#dc3545'" class="mt-2">
+      {{ message }}
+    </div>
+    
+  
+    <p *ngIf="loading" class="loading">Analyzing resume with Gemini...</p>
+    <button class="btn" routerLink="/dashboard">Dashboard</button>
+  </div>
+  
+</div>

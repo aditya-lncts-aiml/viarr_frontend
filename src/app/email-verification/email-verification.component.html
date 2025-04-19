@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="email-verification-container">
+    <div class="verification-box">
+      <h2>Email Verification</h2>
+  
+      <p *ngIf="email" class="info-text">
+        An OTP has been sent to <strong>{{ email }}</strong>
+      </p>
+  
+      <div *ngIf="otpSent">
+        <div class="input-group">
+          <input type="text" [(ngModel)]="otp" placeholder="Enter OTP" required />
+        </div>
+  
+        <div class="button-group">
+          <button (click)="verifyOtp()">Verify</button>
+  
+          <button (click)="resendOtp()" [disabled]="!canResendOtp">
+            Resend OTP
+            <span *ngIf="!canResendOtp" class="timer-text">in {{ resendTimer }}s</span>
+          </button>
+        </div>
+      </div>
+  
+      <div *ngIf="loading" class="loading-text">
+        Sending OTP...
+      </div>
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+    <div *ngIf="loading" class="spinner-container">
+        <div class="spinner"></div>
+        <p>Fetching your performance evaluation, please wait...</p>
+      </div>
+      
+      <div *ngIf="!loading && evaluations.length">
+        <div *ngFor="let eval of evaluations" class="evaluation-card">
+          <h3>{{ eval.question }}</h3>
+          <p><strong>Your Answer:</strong> {{ eval.answer }}</p>
+          <p><strong>Score:</strong> {{ eval.score }}/10</p>
+          <p><strong>Feedback:</strong> {{ eval.feedback }}</p>
+        </div>
+      </div>
+      
+      <div *ngIf="!loading && errorMessage" class="error">
+        {{ errorMessage }}
+      </div>
+<div class="btn">
+    <button class="back-button" routerLink="/dashboard">Back to Dashboard</button>
+</div>
+</div>

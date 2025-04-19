@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="profile-card" *ngIf="userData; else loadingOrError">
+      <h2>👤 Profile</h2>
+  
+      <div class="info">
+        <p><span>Username:</span> {{ userData.username }}</p>
+        <p><span>Full Name:</span> {{ userData.fullName }}</p>
+        <p><span>Email:</span> {{ userData.email }}</p>
+      </div>
+  
+      <div class="skills-section" *ngIf="userData.skills?.length > 0; else noSkills">
+        <h3>💼 Skills</h3>
+        <ul>
+          <li *ngFor="let skill of userData.skills">{{ skill }}</li>
+        </ul>
+      </div>
+  
+      <ng-template #noSkills>
+        <p class="no-skills">No skills found in resume.</p>
+      </ng-template>
+
+      <button class="dashboard-btn" routerLink="/dashboard">Go to Dashboard</button>
+
+    </div>
+
+  
+    <ng-template #loadingOrError>
+      <p class="loading" *ngIf="loading">Loading profile details...</p>
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </ng-template>
+
+
+  </div>
+  

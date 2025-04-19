@@ -1,0 +1,82 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <h2>Login</h2>
+
+    <!-- Registration success message -->
+    <div *ngIf="showSuccessMessage" class="success-message">
+      ✅ Registration successful! Please log in
+    </div>
+
+    <!-- Username -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        placeholder="Enter your username or email address"
+        [class.invalid]="username?.invalid && (username?.touched || username?.dirty)"
+        [attr.aria-invalid]="username?.invalid"
+      />
+      <div class="error-message" *ngIf="username?.invalid && (username?.touched || username?.dirty)">
+        <span *ngIf="username?.hasError('required')">Username is required</span>
+        <span *ngIf="username?.hasError('minlength')">Must be at least 3 characters</span>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <div class="password-field">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          formControlName="password"
+          placeholder="Enter your password"
+          [class.invalid]="password?.invalid && (password?.touched || password?.dirty)"
+          [attr.aria-invalid]="password?.invalid"
+        />
+        <button 
+          type="button" 
+          (click)="togglePasswordVisibility()" 
+          class="toggle-btn" 
+          [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+        >
+          {{ showPassword ? '🙈' : '👁️' }}
+        </button>
+      </div>
+      <div class="error-message" *ngIf="password?.invalid && (password?.touched || password?.dirty)">
+        <span *ngIf="password?.hasError('required')">Password is required</span>
+        <span *ngIf="password?.hasError('minlength')">Must be at least 8 characters</span>
+      </div>
+    </div>
+
+    <!-- Login Button -->
+    <button 
+      type="submit" 
+      [disabled]="loginForm.invalid || isLoading" 
+      class="login-btn"
+      [class.loading]="isLoading"
+    >
+      <span *ngIf="!isLoading">Login</span>
+      <span *ngIf="isLoading" class="loading-state">
+        <span class="spinner"></span>
+        Logging in...
+      </span>
+    </button>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message server-error">
+      ❌ {{ errorMessage }}
+    </div>
+
+    <!-- Additional Links -->
+    <div class="form-footer">
+      <a routerLink="/forgot-password" class="text-link">Forgot password?</a>
+      <span class="register-text">
+        Don't have an account? 
+        <a routerLink="/register" class="text-link">Register here</a>
+      </span>
+    </div>
+  </form>
+</div>

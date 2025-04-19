@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="interview-container">
+    <div class="question">
+      <p>Question: {{ question }}</p>
+    </div>
+  
+    <div class="controls">
+      <button (click)="speakQuestion(question)">🔁 Relisten</button>
+    </div>
+  
+    <div class="status">
+      <p>Listening: {{ isListening ? '🎤 Yes' : '❌ No' }}</p>
+    </div>
+  
+    <div class="response">
+      <p><strong>Live Response:</strong> {{ answer }}</p>
+    </div>
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+    <div class="btn">
+      <button class="back-button" routerLink="/dashboard">Back to Dashboard</button>
+  </div>
+  </div>
+  
+</div>
